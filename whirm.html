@@ -14,9 +14,7 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a> ||
-    </nav>
+   
 
     <h1 style="text-align: center;">whirm</h1>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
@@ -26,12 +24,16 @@
         const ctx = canvas.getContext("2d");
 
         const box = 20;
-        let snake = [{ x: 200, y: 200 }];
-        let direction = "RIGHT";
-        let food = { 
-            x: Math.floor(Math.random() * 20) * box, 
-            y: Math.floor(Math.random() * 20) * box 
-        };
+        let snake, direction, food;
+
+        function resetGame() {
+            snake = [{ x: 200, y: 200 }];
+            direction = "RIGHT";
+            food = { 
+                x: Math.floor(Math.random() * 20) * box, 
+                y: Math.floor(Math.random() * 20) * box 
+            };
+        }
 
         document.addEventListener("keydown", changeDirection);
 
@@ -72,15 +74,17 @@
 
             let newHead = { x: newX, y: newY };
             if (newX < 0 || newY < 0 || newX >= canvas.width || newY >= canvas.height || snake.some(seg => seg.x === newX && seg.y === newY)) {
-                alert("Game Over!");
-                snake = [{ x: 200, y: 200 }];
-                direction = "RIGHT";
+                resetGame(); // Instead of "Game Over!", restart the game
             }
 
             snake.unshift(newHead);
         }
 
+        resetGame();
         setInterval(draw, 100);
     </script>
+     <nav>
+        <a href="index.html">Home</a> ||
+    </nav>
 </body>
 </html>
