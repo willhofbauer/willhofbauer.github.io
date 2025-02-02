@@ -38,29 +38,42 @@ a:hover::after {
     transform: scaleX(1);
 }
 
-/* Navigation */
-nav {
+/* Main Navigation Styles */
+.main-nav {
     display: flex;
     justify-content: center;
     gap: 20px;
     padding: 15px 0;
 }
 
-nav a {
+.main-nav a {
     text-decoration: none;
     color: black;
-    padding: 0px 5px;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease-in-out;
 }
 
-nav a:hover {
+.main-nav a:hover {
     color: blue;
 }
 
-/* Content Images */
-#content, #content2 {
-    position: relative;
+/* Social Media Navigation Styles */
+.social-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
 }
+
+.social-nav a {
+    font-size: 1.5em; /* Adjusts icon size */
+    color: black;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-nav a:hover {
+    color: blue;
+}
+
 
 #content img {
     position: absolute;
