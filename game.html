@@ -5,91 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <style>
-        body { font-family: Noto Sans, sans-serif; text-align: center; padding: 50px; 
-              background-color: white; /* White background */
-                background-image: url('blue-snow.png'); /* Uses local file */
-                background-size: 400px 400px; /* Adjust for subtle effect */
-                background-repeat: repeat; /* Ensures the texture repeats */
-             }
+        body { 
+            font-family: Noto Sans, sans-serif; 
+            text-align: center; 
+            padding: 50px; 
+            background-color: white; 
+            background-image: url('blue-snow.png'); 
+            background-size: 400px 400px; 
+            background-repeat: repeat;
+        }
         h1 { font-size: 2em; }
-        a { color: blue; text-decoration: none; }canvas {
+        canvas {
             display: block;
             margin: 20px auto;
             background: black;
         }
-
-                nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Adds spacing between links */
-  padding: 15px 0;
-}
-
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+        }
         nav a {
-  text-decoration: none;
-  color: black; /* Change based on your design */
-  padding: 0px 00px; /* Adds spacing around links */
-  transition: color 0.3s ease, background 0.3s ease;
-}
-
-nav a:hover {
-  color: blue; /* Changes text color on hover */
-  border-radius: 5px; /* Smooths the edges */
-}
-
-        
-                  a {
-  text-decoration: none; /* Removes default underline */
-  position: relative;
-  color: blue; /* Adjust based on your design */
-}
-
-a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px; /* Adjust spacing */
-  width: 100%;
-  height: 2px;
-  background: blue; /* Adjust to match your site's theme */
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease-in-out;
-}
-
-a:hover::after {
-  transform: scaleX(1);
-}
-
-   
-    body {
-      font-family: Noto Sans, sans-serif;
-      text-align: center;
-      background: white;
-    }
-    canvas {
-      border: 2px solid black;
-      margin-top: 10px;
-    }
-    #leaderboard {
-      margin-top: 20px;
-      text-align: left;
-      display: inline-block;
-    }
-    #leaderboard ul {
-      padding: 0;
-    }
-    #leaderboard li {
-      list-style: none;
-      padding: 5px;
-      font-weight: bold;
-    }
-    input, button {
-      padding: 5px;
-      font-size: 16px;
-    }
-  
-       
+            text-decoration: none;
+            color: black;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+        nav a:hover {
+            color: blue;
+            border-radius: 5px;
+        }
+        a {
+            text-decoration: none;
+            position: relative;
+            color: blue;
+        }
+        a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background: blue;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-in-out;
+        }
+        a:hover::after {
+            transform: scaleX(1);
+        }
+        #leaderboard {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #leaderboard ul {
+            padding: 0;
+        }
+        #leaderboard li {
+            list-style: none;
+            padding: 5px;
+            font-weight: bold;
+        }
+        input, button {
+            padding: 5px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -97,146 +82,137 @@ a:hover::after {
         <a href="index.html">Home</a> 
         <a href="about.html">About</a> 
         <a href="work.html">Work</a> 
-    <!--     <a href="shows.html">Shows</a> ||-->
         <a href="press.html">Press</a> 
         <a href="contact.html">Contact</a>
-        </nav>
-
+    </nav>
 
     <p> </p>
 
-  <h2>Whirm Snake Game</h2>
-  
-  <label for="playerName">Enter Name:</label>
-  <input type="text" id="playerName" placeholder="Your Name">
-  <button onclick="startGame()">Start Game</button>
+    <label for="playerName">Enter Name:</label>
+    <input type="text" id="playerName" placeholder="Your Name">
+    <button onclick="startGame()">Start Game</button>
 
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
 
-  <div id="leaderboard">
-    <h3>Leaderboard</h3>
-    <ul id="leaderboardList"></ul>
-  </div>
+    <div id="leaderboard">
+        <h3>Leaderboard</h3>
+        <ul id="leaderboardList"></ul>
+    </div>
 
-  <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const gridSize = 20;
+        let snake = [{ x: 10, y: 10 }];
+        let direction = "right";
+        let food = { x: 5, y: 5 };
+        let score = 0;
+        let gameRunning = false;
+        let playerName = "";
 
-    let snake = [{ x: 200, y: 200 }];
-    let direction = { x: 0, y: 0 };
-    let food = { x: 100, y: 100 };
-    let score = 0;
-    let playerName = "";
-    let gameRunning = false;
+        function startGame() {
+            playerName = document.getElementById("playerName").value.trim();
+            if (playerName === "") {
+                alert("Please enter your name!");
+                return;
+            }
+            score = 0;
+            snake = [{ x: 10, y: 10 }];
+            direction = "right";
+            food = { x: 5, y: 5 };
+            gameRunning = true;
+            gameLoop();
+        }
 
-    function startGame() {
-      playerName = document.getElementById("playerName").value.trim();
-      if (playerName === "") {
-        alert("Please enter your name!");
-        return;
-      }
-      score = 0;
-      snake = [{ x: 200, y: 200 }];
-      direction = { x: 20, y: 0 };
-      placeFood();
-      gameRunning = true;
-      gameLoop();
-    }
+        function gameLoop() {
+            if (!gameRunning) return;
+            setTimeout(() => {
+                moveSnake();
+                if (checkCollision()) {
+                    endGame();
+                    return;
+                }
+                if (snake[0].x === food.x && snake[0].y === food.y) {
+                    score++;
+                    snake.push({});
+                    placeFood();
+                }
+                drawGame();
+                gameLoop();
+            }, 100);
+        }
 
-    function gameLoop() {
-      if (!gameRunning) return;
-      setTimeout(() => {
-        clearCanvas();
-        moveSnake();
-        drawFood();
-        drawSnake();
-        checkGameOver();
-        gameLoop();
-      }, 100);
-    }
+        function moveSnake() {
+            let head = { ...snake[0] };
+            if (direction === "right") head.x++;
+            if (direction === "left") head.x--;
+            if (direction === "up") head.y--;
+            if (direction === "down") head.y++;
+            snake.unshift(head);
+            snake.pop();
+        }
 
-    function clearCanvas() {
-      ctx.fillStyle = "white";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
+        function checkCollision() {
+            return (
+                snake[0].x < 0 ||
+                snake[0].x >= canvas.width / gridSize ||
+                snake[0].y < 0 ||
+                snake[0].y >= canvas.height / gridSize ||
+                snake.slice(1).some(segment => segment.x === snake[0].x && segment.y === snake[0].y)
+            );
+        }
 
-    function moveSnake() {
-      const newHead = { 
-        x: snake[0].x + direction.x, 
-        y: snake[0].y + direction.y 
-      };
+        function endGame() {
+            gameRunning = false;
+            saveScore(playerName, score);
+            setTimeout(startGame, 2000);
+        }
 
-      if (newHead.x === food.x && newHead.y === food.y) {
-        score++;
-        placeFood();
-      } else {
-        snake.pop();
-      }
+        function placeFood() {
+            food = {
+                x: Math.floor(Math.random() * (canvas.width / gridSize)),
+                y: Math.floor(Math.random() * (canvas.height / gridSize))
+            };
+        }
 
-      snake.unshift(newHead);
-    }
+        function drawGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "red";
+            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+            ctx.fillStyle = "white";
+            snake.forEach(segment => {
+                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
+            });
+        }
 
-    function drawSnake() {
-      ctx.fillStyle = "black";
-      snake.forEach(part => {
-        ctx.fillRect(part.x, part.y, 20, 20);
-      });
-    }
+        function saveScore(name, score) {
+            let scores = JSON.parse(localStorage.getItem("leaderboard")) || [];
+            scores.push({ name, score });
+            scores.sort((a, b) => b.score - a.score);
+            scores = scores.slice(0, 5); 
+            localStorage.setItem("leaderboard", JSON.stringify(scores));
+            updateLeaderboard();
+        }
 
-    function drawFood() {
-      ctx.fillStyle = "red";
-      ctx.fillRect(food.x, food.y, 20, 20);
-    }
+        function updateLeaderboard() {
+            let scores = JSON.parse(localStorage.getItem("leaderboard")) || [];
+            const leaderboardList = document.getElementById("leaderboardList");
+            leaderboardList.innerHTML = "";
+            scores.forEach((entry, index) => {
+                leaderboardList.innerHTML += `<li>${index + 1}. ${entry.name} - ${entry.score}</li>`;
+            });
+        }
 
-    function placeFood() {
-      food = {
-        x: Math.floor(Math.random() * 20) * 20,
-        y: Math.floor(Math.random() * 20) * 20
-      };
-    }
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowRight" && direction !== "left") direction = "right";
+            if (event.key === "ArrowLeft" && direction !== "right") direction = "left";
+            if (event.key === "ArrowUp" && direction !== "down") direction = "up";
+            if (event.key === "ArrowDown" && direction !== "up") direction = "down";
+        });
 
-    function checkGameOver() {
-      const head = snake[0];
+        updateLeaderboard();
+    </script>
 
-      if (
-        head.x < 0 || head.x >= canvas.width || 
-        head.y < 0 || head.y >= canvas.height || 
-        snake.slice(1).some(part => part.x === head.x && part.y === head.y)
-      ) {
-        gameRunning = false;
-        saveScore(playerName, score);
-        setTimeout(startGame, 2000); // Restart after 2s
-      }
-    }
-
-    function saveScore(name, score) {
-      let scores = JSON.parse(localStorage.getItem("leaderboard")) || [];
-      scores.push({ name, score });
-      scores.sort((a, b) => b.score - a.score);
-      scores = scores.slice(0, 5); // Keep only top 5 scores
-      localStorage.setItem("leaderboard", JSON.stringify(scores));
-      updateLeaderboard();
-    }
-
-    function updateLeaderboard() {
-      let scores = JSON.parse(localStorage.getItem("leaderboard")) || [];
-      const leaderboardList = document.getElementById("leaderboardList");
-      leaderboardList.innerHTML = "";
-      scores.forEach((entry, index) => {
-        leaderboardList.innerHTML += `<li>${index + 1}. ${entry.name} - ${entry.score}</li>`;
-      });
-    }
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowUp" && direction.y === 0) direction = { x: 0, y: -20 };
-      if (event.key === "ArrowDown" && direction.y === 0) direction = { x: 0, y: 20 };
-      if (event.key === "ArrowLeft" && direction.x === 0) direction = { x: -20, y: 0 };
-      if (event.key === "ArrowRight" && direction.x === 0) direction = { x: 20, y: 0 };
-    });
-
-    updateLeaderboard(); // Load scores on page load
-  </script>
- 
     <p>PS: Desktop only!</p>
     <p>-</p>
 </body>
