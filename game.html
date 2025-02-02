@@ -18,7 +18,27 @@
             background: black;
         }
 
-                 a {
+                nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adds spacing between links */
+  padding: 15px 0;
+}
+
+        nav a {
+  text-decoration: none;
+  color: black; /* Change based on your design */
+  padding: 0px 00px; /* Adds spacing around links */
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+nav a:hover {
+  color: blue; /* Changes text color on hover */
+  border-radius: 5px; /* Smooths the edges */
+}
+
+        
+                  a {
   text-decoration: none; /* Removes default underline */
   position: relative;
   color: blue; /* Adjust based on your design */
@@ -40,6 +60,7 @@ a::after {
 a:hover::after {
   transform: scaleX(1);
 }
+
         
         <style>
         
@@ -48,17 +69,16 @@ a:hover::after {
 </head>
 <body>
    <nav>
-        <a href="index.html">Home</a> ||
-        <a href="about.html">About</a> ||
-        <a href="work.html">Work</a> ||
+        <a href="index.html">Home</a> 
+        <a href="about.html">About</a> 
+        <a href="work.html">Work</a> 
     <!--     <a href="shows.html">Shows</a> ||-->
-        <a href="press.html">Press</a> ||
+        <a href="press.html">Press</a> 
         <a href="contact.html">Contact</a>
         </nav>
 
 
     <p> </p>
-    <nav>
 
     
  <canvas id="gameCanvas" width="400" height="400"></canvas>
