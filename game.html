@@ -30,8 +30,93 @@
 
     <p> </p>
     <nav>
+
+        const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+const gridSize = 20;
+let snake = [{ x: 10, y: 10 }];
+let direction = "right";
+let food = { x: 5, y: 5 };
+let gameOver = false;
+
+document.addEventListener("keydown", changeDirection);
+setInterval(updateGame, 100);
+
+function updateGame() {
+    if (gameOver) return;
+    moveSnake();
+    if (checkCollision()) {
+        endGame();
+        return;
+    }
+    if (snake[0].x === food.x && snake[0].y === food.y) {
+        snake.push({});
+        placeFood();
+    }
+    drawGame();
+}
+
+function moveSnake() {
+    let head = { ...snake[0] };
+    if (direction === "right") head.x++;
+    if (direction === "left") head.x--;
+    if (direction === "up") head.y--;
+    if (direction === "down") head.y++;
+    snake.unshift(head);
+    snake.pop();
+}
+
+function changeDirection(event) {
+    const key = event.key;
+    if (key === "ArrowRight" && direction !== "left") direction = "right";
+    if (key === "ArrowLeft" && direction !== "right") direction = "left";
+    if (key === "ArrowUp" && direction !== "down") direction = "up";
+    if (key === "ArrowDown" && direction !== "up") direction = "down";
+}
+
+function checkCollision() {
+    return (
+        snake[0].x < 0 ||
+        snake[0].x >= canvas.width / gridSize ||
+        snake[0].y < 0 ||
+        snake[0].y >= canvas.height / gridSize ||
+        snake.slice(1).some(segment => segment.x === snake[0].x && segment.y === snake[0].y)
+    );
+}
+
+function endGame() {
+    gameOver = true;
+    setTimeout(() => {
+        resetGame();
+    }, 2000);
+}
+
+function resetGame() {
+    snake = [{ x: 10, y: 10 }];
+    direction = "right";
+    food = { x: 5, y: 5 };
+    gameOver = false;
+}
+
+function placeFood() {
+    food = {
+        x: Math.floor(Math.random() * (canvas.width / gridSize)),
+        y: Math.floor(Math.random() * (canvas.height / gridSize))
+    };
+}
+
+function drawGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "red";
+    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+    ctx.fillStyle = "white";
+    snake.forEach(segment => {
+        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
+    });
+}
+
     
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+ <canvas id="gameCanvas" width="400" height="400"></canvas>
 
     <script>
         const canvas = document.getElementById("gameCanvas");
