@@ -3,90 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <style>
-        body { font-family: Noto Sans, sans-serif; text-align: center; padding: 50px; 
-              background-color: white; /* White background */
-                background-image: url('blue-snow.png'); /* Uses local file */
-                background-size: 400px 400px; /* Adjust for subtle effect */
-                background-repeat: repeat; /* Ensures the texture repeats */
-             }
-        h1 { font-size: 2em; }
-        a { color: blue; text-decoration: none; }
-
-          #content {
-        position: relative;
-    }
-    #content img {
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
-    }
-
-                 nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Adds spacing between links */
-  padding: 15px 0;
-}
-
-        nav a {
-  text-decoration: none;
-  color: black; /* Change based on your design */
-  padding: 0px 00px; /* Adds spacing around links */
-  transition: color 0.3s ease, background 0.3s ease;
-}
-
-nav a:hover {
-  color: blue; /* Changes text color on hover */
-  border-radius: 5px; /* Smooths the edges */
-}
-
-        
-                  a {
-  text-decoration: none; /* Removes default underline */
-  position: relative;
-  color: blue; /* Adjust based on your design */
-}
-
-a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px; /* Adjust spacing */
-  width: 100%;
-  height: 2px;
-  background: blue; /* Adjust to match your site's theme */
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease-in-out;
-}
-
-a:hover::after {
-  transform: scaleX(1);
-}
-        
-    </style>
+    <title>Contact - Will Hofbauer</title>
+    
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Contact</h1>
-       <nav>
-        <a href="index.html">Home</a> 
-        <a href="about.html">About</a> 
-        <a href="work.html">Work</a> 
-    <!--     <a href="shows.html">Shows</a> ||-->
-        <a href="press.html">Press</a> 
+    
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="work.html">Work</a>
+        <a href="press.html">Press</a>
         <a href="contact.html">Contact</a>
-        </nav>
-
+    </nav>
+    
+    <!-- Contact Information -->
     <p>General: <a href="mailto:will@thirdplacerecords.com">will@thirdplacerecords.com</a></p>
     <p>DJ Bookings: <a href="mailto:george@leftbank.agency">george@leftbank.agency</a></p>
-    <p>-</p>
-    <p> Bored yet? <a href="game.html">Click here :)</a>
-        
-
-</body>
-<div id="content">
-    <img src="natural-8617.gif" alt="" width="30"/>
     
+    <p>-</p>
+    
+    <!-- Fun Redirect to Game -->
+    <p> Bored yet? <a href="game.html">Click here :)</a></p>
+    
+    <div id="content">
+        <!-- Decorative floating image -->
+        <img src="natural-8617.gif" alt="" width="30"/>
+    </div>
+</body>
 </html>
