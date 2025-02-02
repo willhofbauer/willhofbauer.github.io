@@ -23,7 +23,37 @@
         left: 0px;
     }
 
-                 a {
+             nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adds spacing between links */
+  padding: 15px 0;
+}
+
+        nav a {
+  text-decoration: none;
+  color: black; /* Change based on your design */
+  padding: 0px 00px; /* Adds spacing around links */
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+nav a:hover {
+  color: blue; /* Changes text color on hover */
+  border-radius: 5px; /* Smooths the edges */
+}
+
+   #content {
+        position: relative;
+    }
+    #content img {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+   
+
+        
+                  a {
   text-decoration: none; /* Removes default underline */
   position: relative;
   color: blue; /* Adjust based on your design */
@@ -45,6 +75,7 @@ a::after {
 a:hover::after {
   transform: scaleX(1);
 }
+
         
     </style>
 </head>
