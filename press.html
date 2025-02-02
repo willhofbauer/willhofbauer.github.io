@@ -32,7 +32,27 @@
         right: 0px;
     }
         
-                         a {
+                          nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adds spacing between links */
+  padding: 15px 0;
+}
+
+        nav a {
+  text-decoration: none;
+  color: black; /* Change based on your design */
+  padding: 0px 00px; /* Adds spacing around links */
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+nav a:hover {
+  color: blue; /* Changes text color on hover */
+  border-radius: 5px; /* Smooths the edges */
+}
+
+        
+                  a {
   text-decoration: none; /* Removes default underline */
   position: relative;
   color: blue; /* Adjust based on your design */
@@ -63,12 +83,11 @@ a:hover::after {
 </head>
 <body>
     <h1>Press</h1>
-        <nav>
-        <a href="index.html">Home</a> ||
-        <a href="about.html">About</a> ||
-        <a href="work.html">Work</a> ||
+        <a href="index.html">Home</a> 
+        <a href="about.html">About</a> 
+        <a href="work.html">Work</a> 
     <!--     <a href="shows.html">Shows</a> ||-->
-        <a href="press.html">Press</a> ||
+        <a href="press.html">Press</a> 
         <a href="contact.html">Contact</a>
         </nav>
 
@@ -76,7 +95,6 @@ a:hover::after {
     <img src="flower-9452.gif" alt="" width="30"/>
 
     <p>-</p>
-    <nav>
     <p>2024 - <a href="https://www.bbc.co.uk/programmes/m001vjd0">BBC 6Music with Mary Anne Hobbs - "Sounds of the Near Future: 'UKA' by Will Hofbauer and Sangre Voss"</a></p>
     <p>2024 - <a href="https://mixmag.net/read/will-hofbauer-and-sangre-voss-launch-new-label-whirm-news">Mixmag - "Will Hofbauer and Sangre Voss launch new label, whirm"</a></p>
     <p>2024 - <a href="https://ra.co/reviews/36044">Resident Advisor - "Review: Will Hofbauer & Sangre Voss - I feel U"</a></p>
