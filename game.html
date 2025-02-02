@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game - Will Hofbauer</title>
     
     <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="styles.css">
@@ -19,14 +18,27 @@
         canvas {
             width: 300px;
             height: 300px;
+            background: black;
         }
         #leaderboard {
             width: 200px;
         }
         
-        /* Prevent arrow keys from scrolling the page */
-        body {
+        /* Prevent arrow keys from scrolling the page only when playing */
+        body.no-scroll {
             overflow: hidden;
+        }
+
+        /* Mobile Controls */
+        .mobile-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .mobile-controls button {
+            padding: 10px;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -53,7 +65,17 @@
             <ul id="leaderboardList"></ul>
         </div>
     </div>
-    
+
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+        <button onclick="setDirection('up')">⬆️</button>
+    </div>
+    <div class="mobile-controls">
+        <button onclick="setDirection('left')">⬅️</button>
+        <button onclick="setDirection('down')">⬇️</button>
+        <button onclick="setDirection('right')">➡️</button>
+    </div>
+
     <script>
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
@@ -76,6 +98,7 @@
             direction = "right";
             food = { x: 5, y: 5 };
             gameRunning = true;
+            document.body.classList.add("no-scroll"); // Prevent scrolling only during gameplay
             gameLoop();
         }
 
@@ -119,6 +142,7 @@
 
         function endGame() {
             gameRunning = false;
+            document.body.classList.remove("no-scroll"); // Re-enable scrolling after game ends
             saveScore(playerName, score);
             setTimeout(startGame, 2000);
         }
@@ -159,16 +183,25 @@
         }
 
         document.addEventListener("keydown", (event) => {
-            event.preventDefault();
+            if (!gameRunning) return;
+            event.preventDefault(); // Prevent scrolling only when game is running
             if (event.key === "ArrowRight" && direction !== "left") direction = "right";
             if (event.key === "ArrowLeft" && direction !== "right") direction = "left";
             if (event.key === "ArrowUp" && direction !== "down") direction = "up";
             if (event.key === "ArrowDown" && direction !== "up") direction = "down";
         });
 
+        function setDirection(newDirection) {
+            if (!gameRunning) return;
+            if (newDirection === "right" && direction !== "left") direction = "right";
+            if (newDirection === "left" && direction !== "right") direction = "left";
+            if (newDirection === "up" && direction !== "down") direction = "up";
+            if (newDirection === "down" && direction !== "up") direction = "down";
+        }
+
         updateLeaderboard();
     </script>
 
-    <p>PS: Desktop & Mobile Friendly!</p>
+    <p>PS: Now works on **desktop & mobile**! 🚀</p>
 </body>
 </html>
