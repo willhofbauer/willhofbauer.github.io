@@ -24,9 +24,9 @@ a {
 a::after {
     content: "";
     position: absolute;
-    left: 0;
+    left: 1;
     bottom: -2px; /* Adjust spacing */
-    width: 90%;
+    width: 100%;
     height: 1px; /* Makes the underline smaller */
     background: blue;
     transform: scaleX(0);
