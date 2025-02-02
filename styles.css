@@ -109,15 +109,21 @@ nav a i {
     right: 0;
 }
 
+#content2 img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
 #content3 img {
     position: absolute;
     top: 0;
     left: 0;
 }
 
-#content2 img {
+#content4 img {
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
 }
 
