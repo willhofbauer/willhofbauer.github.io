@@ -23,8 +23,27 @@
         right: 0px;
     }
    
+ nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adds spacing between links */
+  padding: 15px 0;
+}
 
-                        a {
+        nav a {
+  text-decoration: none;
+  color: black; /* Change based on your design */
+  padding: 0px 00px; /* Adds spacing around links */
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+nav a:hover {
+  color: blue; /* Changes text color on hover */
+  border-radius: 5px; /* Smooths the edges */
+}
+
+        
+                  a {
   text-decoration: none; /* Removes default underline */
   position: relative;
   color: blue; /* Adjust based on your design */
@@ -67,7 +86,6 @@ a:hover::after {
 
 
     <p>-</p>
-    <nav>
     <h2>Selected Discography</h2>
     <p>2024 - <a href="https://thirdplacerecords.bandcamp.com/album/will-hofbauer-pond-party">Pond Party - Third Place</a></p>
     <p>2024 - <a href="https://optimomusic.bandcamp.com/album/dingers">Dingers - Optimo Music</a></p>
