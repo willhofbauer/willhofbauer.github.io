@@ -100,7 +100,7 @@ nav a i:hover {
 }
 
 /* Adjust hover effect for icon navigation on index page */
-.icon-nav a::after {
+.social-nav a::after {
     content: "";
     position: absolute;
     left: 10%; /* Makes underline slightly less wide */
@@ -114,6 +114,6 @@ nav a i:hover {
     transition: transform 0.3s ease-in-out;
 }
 
-.icon-nav a:hover::after {
+.social-nav a:hover::after {
     transform: scaleX(1);
 }
