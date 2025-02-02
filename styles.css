@@ -26,7 +26,7 @@ a::after {
     position: absolute;
     left: 0;
     bottom: -2px;
-    width: 100%;
+    width: 80%;
     height: 2px;
     background: blue;
     transform: scaleX(0);
@@ -89,7 +89,7 @@ a:hover::after {
 
 /* Social Icons */
 nav a i {
-    font-size: 1.5em;
+    font-size: 1em;
     margin: 0 10px;
     transition: color 0.3s ease;
 }
