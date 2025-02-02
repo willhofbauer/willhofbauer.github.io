@@ -3,102 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <title>Snake Game - Will Hofbauer</title>
+    
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body { 
-            font-family: Noto Sans, sans-serif; 
-            text-align: center; 
-            padding: 50px; 
-            background-color: white; 
-            background-image: url('blue-snow.png'); 
-            background-size: 400px 400px; 
-            background-repeat: repeat;
-        }
-        h1 { font-size: 2em; }
-        canvas {
-            display: block;
-            margin: 20px auto;
-            background: black;
-        }
-        nav {
+        /* Adjust layout for leaderboard on the right */
+        .game-container {
             display: flex;
             justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
             gap: 20px;
-            padding: 15px 0;
         }
-        nav a {
-            text-decoration: none;
-            color: black;
-            transition: color 0.3s ease, background 0.3s ease;
-        }
-        nav a:hover {
-            color: blue;
-            border-radius: 5px;
-        }
-        a {
-            text-decoration: none;
-            position: relative;
-            color: blue;
-        }
-        a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 100%;
-            height: 2px;
-            background: blue;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease-in-out;
-        }
-        a:hover::after {
-            transform: scaleX(1);
+        canvas {
+            width: 300px;
+            height: 300px;
         }
         #leaderboard {
-            margin-top: 20px;
-            text-align: left;
-            display: inline-block;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
+            width: 200px;
         }
-        #leaderboard ul {
-            padding: 0;
-        }
-        #leaderboard li {
-            list-style: none;
-            padding: 5px;
-            font-weight: bold;
-        }
-        input, button {
-            padding: 5px;
-            font-size: 16px;
+        
+        /* Prevent arrow keys from scrolling the page */
+        body {
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-   <nav>
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
         <a href="index.html">Home</a> 
         <a href="about.html">About</a> 
         <a href="work.html">Work</a> 
         <a href="press.html">Press</a> 
         <a href="contact.html">Contact</a>
     </nav>
-
-    <p> </p>
-
+    
+    <h1>Snake Game</h1>
+    
     <label for="playerName">Enter Name:</label>
     <input type="text" id="playerName" placeholder="Your Name">
     <button onclick="startGame()">Start Game</button>
-
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
-
-    <div id="leaderboard">
-        <h3>Leaderboard</h3>
-        <ul id="leaderboardList"></ul>
+    
+    <div class="game-container">
+        <canvas id="gameCanvas" width="300" height="300"></canvas>
+        <div id="leaderboard">
+            <h3>Leaderboard</h3>
+            <ul id="leaderboardList"></ul>
+        </div>
     </div>
-
+    
     <script>
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
@@ -204,6 +159,7 @@
         }
 
         document.addEventListener("keydown", (event) => {
+            event.preventDefault();
             if (event.key === "ArrowRight" && direction !== "left") direction = "right";
             if (event.key === "ArrowLeft" && direction !== "right") direction = "left";
             if (event.key === "ArrowUp" && direction !== "down") direction = "up";
@@ -213,7 +169,6 @@
         updateLeaderboard();
     </script>
 
-    <p>PS: Desktop only!</p>
-    <p>-</p>
+    <p>PS: Desktop & Mobile Friendly!</p>
 </body>
 </html>
