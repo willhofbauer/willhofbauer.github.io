@@ -66,7 +66,7 @@ a:hover::after {
 
 /* Fix icon color */
 .social-nav a {
-    font-size: 1.5em; /* Adjusts icon size */
+    font-size: 1em; /* Adjusts icon size */
     color: black; /* Icons start as black */
     transition: color 0.3s ease-in-out;
     text-decoration: none; /* Remove unwanted underline */
