@@ -38,7 +38,6 @@ a:hover::after {
     transform: scaleX(1);
 }
 
-
 /* Main Navigation Styles */
 .main-nav {
     display: flex;
@@ -61,21 +60,49 @@ a:hover::after {
 .social-nav {
     display: flex;
     justify-content: center;
-    gap: 2px;
+    gap: 5px;
     margin-top: 15px;
 }
 
+/* Fix icon color */
 .social-nav a {
-    font-size: 1em; /* Adjusts icon size */
-    color: black;
+    font-size: 1.5em; /* Adjusts icon size */
+    color: black; /* Icons start as black */
     transition: color 0.3s ease-in-out;
+    text-decoration: none; /* Remove unwanted underline */
 }
 
+/* Hover Effect */
 .social-nav a:hover {
-    color: blue;
+    color: blue; /* Icons turn blue on hover */
 }
 
+/* Fix underlines for social media icons */
+.social-nav a::after {
+    content: "";
+    position: relative; /* Change from absolute to relative */
+    display: block;
+    margin: auto;
+    width: 30%; /* Make it even smaller */
+    height: 2px;
+    background: blue;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
 
+.social-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Fix any conflicts */
+nav a i {
+    font-size: 1em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+/* Fix floating images */
 #content img {
     position: absolute;
     top: 0;
@@ -88,32 +115,3 @@ a:hover::after {
     left: 0;
 }
 
-/* Social Icons */
-nav a i {
-    font-size: 1em;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-}
-
-nav a i:hover {
-    color: blue;
-}
-
-/* Adjust hover effect for icon navigation on index page */
-.social-nav a::after {
-    content: "";
-    position: absolute;
-    left: 10%; /* Makes underline slightly less wide */
-    right: 10%;
-    bottom: -2px;
-    width: 50%; /* Reduced width */
-    height: 2px;
-    background: blue;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.social-nav a:hover::after {
-    transform: scaleX(1);
-}
