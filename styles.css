@@ -127,3 +127,9 @@ nav a i {
     right: 0;
 }
 
+#content img,
+#content2 img,
+#content3 img,
+#content4 img {
+    width: 50px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
